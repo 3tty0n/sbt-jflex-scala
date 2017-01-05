@@ -12,7 +12,7 @@ object SbtJFlexScala extends Plugin {
   lazy val jflexSources = taskKey[Seq[File]]("jflex-sources")
   lazy val jflexGenerate = taskKey[Unit]("jflex-generate")
 
-  override lazy val settings = Seq(
+  override lazy val settings: Seq[Setting[_]] = Seq(
     jflexSourceDirectory := sourceDirectory.value / "main" / "flex",
     jflexOutputDirectory := sourceDirectory.value / "main" / "scala",
     jflexSources <<= jflexSourceDirectory map { dir =>
