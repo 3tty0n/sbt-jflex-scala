@@ -1,2 +1,4 @@
 > jflexGenerate
 $ exists src/main/scala/flex/Yylex.scala
+
+> compile
