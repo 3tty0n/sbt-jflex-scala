@@ -1,2 +1,2 @@
 > jflexGenerate
-$ exists src/main/scala/Yylex.scala
+$ exists src/main/scala/flex/Yylex.scala
