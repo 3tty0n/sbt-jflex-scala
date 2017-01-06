@@ -1,1 +1,1 @@
-addSbtPlugin("com.micchon" % "sbt-jflex-plugin" % "0.1.0-SNAPSHOT")
+addSbtPlugin("com.micchon" % "sbt-jflex-scala" % "0.1.0-SNAPSHOT")
