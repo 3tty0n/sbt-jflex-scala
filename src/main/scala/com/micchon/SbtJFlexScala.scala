@@ -5,7 +5,7 @@ import Keys._
 
 import jflex.{ Options, Main }
 
-object SbtJFlexScala extends Plugin {
+object SbtJFlexScala extends AutoPlugin {
 
   case class JFlexToolConfiguration(
     dot: Boolean = false,
@@ -18,14 +18,20 @@ object SbtJFlexScala extends Plugin {
     grammarSuffix: String = ".flex"
   )
 
-  lazy val jflexSourceDirectory = settingKey[File]("jflex-source-directory")
-  lazy val jflexOutputDirectory = settingKey[File]("jflex-output-directory")
-  lazy val toolConfiguration = settingKey[JFlexToolConfiguration]("jflex-tool-configuration")
-  lazy val pluginConfiguration = settingKey[PluginConfiguration]("jflex-plugin-configuration")
-  lazy val jflexSources = taskKey[Seq[File]]("jflex-sources")
-  lazy val jflexGenerate = taskKey[Unit]("jflex-generate")
+  object autoImport {
+    lazy val jflexSourceDirectory = settingKey[File]("jflex-source-directory")
+    lazy val jflexOutputDirectory = settingKey[File]("jflex-output-directory")
+    lazy val toolConfiguration = settingKey[JFlexToolConfiguration]("jflex-tool-configuration")
+    lazy val pluginConfiguration = settingKey[PluginConfiguration]("jflex-plugin-configuration")
+    lazy val jflexSources = taskKey[Seq[File]]("jflex-sources")
+    lazy val jflexGenerate = taskKey[Unit]("jflex-generate")
+  }
 
-  override lazy val settings: Seq[Setting[_]] = Seq(
+  import autoImport._
+
+  override def trigger: PluginTrigger = allRequirements
+
+  override val projectSettings: Seq[Setting[_]] = Seq(
     jflexSourceDirectory := sourceDirectory.value / "main" / "flex",
     jflexOutputDirectory := sourceDirectory.value / "main" / "scala" / "flex",
     toolConfiguration := JFlexToolConfiguration(),
