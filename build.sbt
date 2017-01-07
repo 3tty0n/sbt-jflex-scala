@@ -10,7 +10,28 @@ lazy val root = (project in file(".")).
   ).settings(publishSettings: _*)
 
 lazy val publishSettings = Seq(
-  crossPaths := false,
-  autoScalaLibrary := false,
-  publishTo := Some(Resolver.file("file", file("repo")))
+  publishMavenStyle := true,
+  publishTo := {
+    val nexus = "https://oss.sonatype.org/"
+    if (isSnapshot.value)
+      Some("snapshots" at nexus + "content/repositories/snapshots")
+    else
+      Some("releases" at nexus + "service/local/staging/deploy/maven2")
+  },
+  publishArtifact in Test := false,
+  pomIncludeRepository := { _ => false },
+  licenses := Seq("MIT" -> url("http://opensource.org/licenses/MIT")),
+  pomExtra :=
+    <url>https://github.com/3tty0n/sbt-jflex-scala</url>
+    <developers>
+      <developer>
+        <id>3tty0n</id>
+        <name>Yusuke Izawa</name>
+        <url>https://github.com/3tty0n</url>
+      </developer>
+    </developers>
+    <scm>
+      <url>git@github.com:3tty0n/sbt-jflex-scala.git</url>
+      <connection>scm:git@github.com:3tty0n/sbt-jflex-scala.git</connection>
+    </scm>
 )
