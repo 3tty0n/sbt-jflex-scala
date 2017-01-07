@@ -9,9 +9,9 @@ This is inspired by [sbt-jflex](https://github.com/dlwh/sbt-jflex).
 In your `project/plugins.sbt`,
 
 ```scala
-resolvers += "Github Repository" at "https://3tty0n.github.io/sbt-jflex-scala/repo/"
+resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 
-addSbtPlugin("com.micchon" % "sbt-jflex-plugin" % "0.1.0-SNAPSHOT")
+addSbtPlugin("com.github.3tty0n" % "sbt-jflex-scala" % "0.1.0-SNAPSHOT")
 ```
 
 Put your `*.flex` file in `src/main/flex`.
