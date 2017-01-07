@@ -1,4 +1,4 @@
-package com.micchon
+package sbtjflexscala
 
 import sbt._
 import Keys._
