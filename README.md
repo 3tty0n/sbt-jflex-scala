@@ -26,10 +26,10 @@ In your sbt shell:
 
 then `Yylex.scala` is generated in `src/main/scala/flex`.
 
-If you want to generate `Yylex.scala` when you compile, in `build.sbt`,
+If you want to generate `Yylex.scala` with compile, add:
 
 ```scala
-compile := ((compile in Compile).dependsOn(jflexGenerate)).value
+jflexGenerateWithCompile := true
 ```
 
 ## License
