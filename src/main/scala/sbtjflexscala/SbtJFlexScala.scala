@@ -23,6 +23,7 @@ object SbtJFlexScala extends AutoPlugin {
     lazy val jflexOutputDirectory = settingKey[File]("jflex-output-directory")
     lazy val toolConfiguration = settingKey[JFlexToolConfiguration]("jflex-tool-configuration")
     lazy val pluginConfiguration = settingKey[PluginConfiguration]("jflex-plugin-configuration")
+    lazy val jflexGenerateWithCompile = settingKey[Boolean]("jflex-with-compile")
     lazy val jflexSources = taskKey[Seq[File]]("jflex-sources")
     lazy val jflexGenerate = taskKey[Unit]("jflex-generate")
   }
@@ -38,7 +39,15 @@ object SbtJFlexScala extends AutoPlugin {
     pluginConfiguration := PluginConfiguration(),
     jflexSources := (jflexSourceDirectory.value ** "*.flex").get,
     jflexGenerate := jflexGeneratorTask.value,
-    unmanagedSourceDirectories in Compile += jflexSourceDirectory.value
+    unmanagedSourceDirectories in Compile += jflexSourceDirectory.value,
+    jflexGenerateWithCompile := false
+  ) ++ Seq(
+    compile := {
+      if (jflexGenerateWithCompile.value)
+        (compile in Compile).dependsOn(jflexGenerate).value
+      else
+        (compile in Compile).value
+      }
   )
 
   lazy val jflexGeneratorTask = Def.task {
