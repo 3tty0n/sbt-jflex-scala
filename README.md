@@ -8,18 +8,18 @@ This is inspired by [sbt-jflex](https://github.com/dlwh/sbt-jflex).
 
 Add your `project/plugins.sbt` file:
 
-### __release__ (Recommended)
-
-```scala
-addSbtPlugin("com.github.3tty0n" % "sbt-jflex-scala" % "0.1.0")
-```
-
-### __snapshot__
+### __snapshot__ (Latest)
 
 ```scala
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 
-addSbtPlugin("com.github.3tty0n" % "sbt-jflex-scala" % "0.1.0-SNAPSHOT")
+addSbtPlugin("com.github.3tty0n" % "sbt-jflex-scala" % "0.1.1-SNAPSHOT")
+```
+
+### __release__
+
+```scala
+addSbtPlugin("com.github.3tty0n" % "sbt-jflex-scala" % "0.1.0")
 ```
 
 ### JFlex specification file
@@ -28,7 +28,7 @@ Put your `*.flex` file in `src/main/flex`.
 
 ### Usage
 
-In your sbt shell: 
+In your sbt shell:
 
 ```
 > jflexGenerate
