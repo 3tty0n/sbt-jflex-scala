@@ -1,7 +1,7 @@
 lazy val root = (project in file(".")).
   settings(
     name := "sbt-jflex-scala",
-    version := "0.1.0-SNAPSHOT",
+    version := "0.1.0",
     organization := "com.github.3tty0n",
     sbtPlugin := true,
     scalacOptions := Seq("-deprecation", "-unchecked"),
