@@ -6,9 +6,16 @@ This is inspired by [sbt-jflex](https://github.com/dlwh/sbt-jflex).
 
 ## Installation
 
-Add your `project/plugins.sbt` file:
+### `project/plugins.sbt`:
 
-### __snapshot__ (Latest)
+
+#### __release__ (Stable)
+
+```scala
+addSbtPlugin("com.github.3tty0n" % "sbt-jflex-scala" % "0.1.0")
+```
+
+#### __snapshot__ (Latest)
 
 ```scala
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
@@ -16,19 +23,14 @@ resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repos
 addSbtPlugin("com.github.3tty0n" % "sbt-jflex-scala" % "0.1.1-SNAPSHOT")
 ```
 
-### __release__ (Stable)
 
-```scala
-addSbtPlugin("com.github.3tty0n" % "sbt-jflex-scala" % "0.1.0")
-```
+## Usage
 
-### JFlex specification file
+### `src/main/flex`:
 
-Put your `*.flex` file in `src/main/flex`.
+Put your `*.flex` file.
 
-### Usage
-
-In your sbt shell:
+### In your sbt shell:
 
 ```
 > jflexGenerate
