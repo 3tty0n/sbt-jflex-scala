@@ -19,13 +19,13 @@ object SbtJFlexScala extends AutoPlugin {
   )
 
   object autoImport {
-    lazy val jflexSourceDirectory = settingKey[File]("jflex-source-directory")
-    lazy val jflexOutputDirectory = settingKey[File]("jflex-output-directory")
-    lazy val toolConfiguration = settingKey[JFlexToolConfiguration]("jflex-tool-configuration")
-    lazy val pluginConfiguration = settingKey[PluginConfiguration]("jflex-plugin-configuration")
-    lazy val jflexGenerateWithCompile = settingKey[Boolean]("jflex-with-compile")
-    lazy val jflexSources = taskKey[Seq[File]]("jflex-sources")
-    lazy val jflexGenerate = taskKey[Unit]("jflex-generate")
+    lazy val jflexSourceDirectory: SettingKey[File] = settingKey[File]("jflex-source-directory")
+    lazy val jflexOutputDirectory: SettingKey[File] = settingKey[File]("jflex-output-directory")
+    lazy val toolConfiguration: SettingKey[JFlexToolConfiguration] = settingKey[JFlexToolConfiguration]("jflex-tool-configuration")
+    lazy val pluginConfiguration: SettingKey[PluginConfiguration] = settingKey[PluginConfiguration]("jflex-plugin-configuration")
+    lazy val jflexGenerateWithCompile: SettingKey[Boolean] = settingKey[Boolean]("jflex-with-compile")
+    lazy val jflexSources: TaskKey[Seq[File]] = taskKey[Seq[File]]("jflex-sources")
+    lazy val jflexGenerate: TaskKey[Unit] = taskKey[Unit]("jflex-generate")
   }
 
   import autoImport._
@@ -50,7 +50,7 @@ object SbtJFlexScala extends AutoPlugin {
       }
   )
 
-  lazy val jflexGeneratorTask = Def.task {
+  lazy val jflexGeneratorTask: Def.Initialize[Task[Unit]] = Def.task {
     generateWithJFlex(
       jflexSources.value,
       jflexOutputDirectory.value,
