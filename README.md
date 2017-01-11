@@ -12,7 +12,7 @@ This is inspired by [sbt-jflex](https://github.com/dlwh/sbt-jflex).
 #### __release__ (Stable)
 
 ```scala
-addSbtPlugin("com.github.3tty0n" % "sbt-jflex-scala" % "0.1.0")
+addSbtPlugin("com.github.3tty0n" % "sbt-jflex-scala" % "0.1.1")
 ```
 
 #### __snapshot__ (Latest)
