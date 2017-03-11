@@ -3,3 +3,12 @@ scala:
   - 2.10.6
 script:
   - sbt scripted
+cache:
+  directories:
+    - $HOME/.ivy2/cache
+    - $HOME/.sbt
+notifications:
+  email:
+    recipients:
+      - yuizalp@gmail.com
+  on_success: always
