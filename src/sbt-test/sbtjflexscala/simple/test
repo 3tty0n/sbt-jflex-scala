@@ -1,12 +1,4 @@
-> set jflexGenerateWithCompile := true
-
-> compile
+> jflex:generate
+$ sleep 3
 $ exists src/main/scala/flex/Yylex.scala
 $ delete src/main/scala/flex/Yylex.scala
-
-> set jflexGenerateWithCompile := false
-
-> jflexGenerate
-$ exists src/main/scala/flex/Yylex.scala
-
-> compile
