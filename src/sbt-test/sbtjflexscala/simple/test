@@ -1,4 +1,4 @@
-> jflex:generate
+> jflex::generate
 $ sleep 3
 $ exists src/main/scala/flex/Yylex.scala
 $ delete src/main/scala/flex/Yylex.scala
