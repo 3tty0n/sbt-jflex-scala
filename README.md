@@ -20,7 +20,7 @@ addSbtPlugin("com.github.3tty0n" % "sbt-jflex-scala" % "0.1.1")
 ```scala
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 
-addSbtPlugin("com.github.3tty0n" % "sbt-jflex-scala" % "0.2.0-SNAPSHOT")
+addSbtPlugin("com.github.3tty0n" % "sbt-jflex-scala" % "0.2.1-SNAPSHOT")
 ```
 
 
