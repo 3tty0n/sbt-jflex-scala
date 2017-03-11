@@ -20,7 +20,7 @@ addSbtPlugin("com.github.3tty0n" % "sbt-jflex-scala" % "0.1.1")
 ```scala
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 
-addSbtPlugin("com.github.3tty0n" % "sbt-jflex-scala" % "0.1.1-SNAPSHOT")
+addSbtPlugin("com.github.3tty0n" % "sbt-jflex-scala" % "0.2.0-SNAPSHOT")
 ```
 
 
@@ -33,7 +33,7 @@ Put your `*.flex` file.
 ### In your sbt shell:
 
 ```
-> jflexGenerate
+> jflex:generate
 ```
 
 then `Yylex.scala` is generated in `src/main/scala/flex`.
@@ -41,7 +41,7 @@ then `Yylex.scala` is generated in `src/main/scala/flex`.
 If you want to generate `Yylex.scala` with compile, add:
 
 ```scala
-jflexGenerateWithCompile := true
+compile := (compile in Compile).dependsOn(generate).value
 ```
 
 ## License
