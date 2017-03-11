@@ -41,7 +41,7 @@ object SbtJFlexScala extends AutoPlugin {
     pluginConfiguration := PluginConfiguration(),
     jflexSources := (sourceDirectory.value ** "*.flex").get,
     generate := jflexGeneratorTask.value,
-    unmanagedSourceDirectories in Compile += (sourceDirectory in jflex).value,
+    unmanagedSourceDirectories in Compile += (sourceDirectory in jflex).value
   )
 
   lazy val jflexGeneratorTask: Def.Initialize[Task[Unit]] = Def.task {
