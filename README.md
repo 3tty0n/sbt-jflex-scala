@@ -38,12 +38,6 @@ Put your `*.flex` file.
 
 then `Yylex.scala` is generated in `src/main/scala/flex`.
 
-If you want to generate `Yylex.scala` with compile, add:
-
-```scala
-compile := (compile in Compile).dependsOn(generate).value
-```
-
 ## License
 
 MIT
