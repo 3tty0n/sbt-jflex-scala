@@ -74,8 +74,13 @@ object SbtJFlexScala extends AutoPlugin {
     log.info(s"JFlex: Generating source files for ${grammars.size} grammars.")
 
     grammars.foreach { g =>
-      Main.generate(g)
       log.info(s"JFlex: Grammar file ${g.getPath} detected.")
+      Try { Main.generate(g) } match {
+        case Success(_) =>
+          log.info(s"JFlex: File generated successfully.")
+        case Failure(_) =>
+          log.error(s"JFlex: File generation is failed.")
+      }
     }
   }
 
