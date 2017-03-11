@@ -33,7 +33,7 @@ Put your `*.flex` file.
 ### In your sbt shell:
 
 ```
-> jflex:generate
+> jflex::generate
 ```
 
 then `Yylex.scala` is generated in `src/main/scala/flex`.
