@@ -12,10 +12,8 @@ This is inspired by [sbt-jflex](https://github.com/dlwh/sbt-jflex).
 #### __release__ (Stable)
 
 ```scala
-addSbtPlugin("com.github.3tty0n" % "sbt-jflex-scala" % "0.1.1")
+addSbtPlugin("com.github.3tty0n" % "sbt-jflex-scala" % "0.2.1")
 ```
-
-Please read this [page](https://github.com/3tty0n/sbt-jflex-scala/tree/5fe2ae6d2103ca212fc09e57c07250eb735a8df0) to know how to use version `0.1.1`.
 
 #### __snapshot__ (Latest)
 
