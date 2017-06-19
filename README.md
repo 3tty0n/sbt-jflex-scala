@@ -8,21 +8,9 @@ This is inspired by [sbt-jflex](https://github.com/dlwh/sbt-jflex).
 
 ### `project/plugins.sbt`:
 
-
-#### __release__ (Stable)
-
 ```scala
 addSbtPlugin("com.github.3tty0n" % "sbt-jflex-scala" % "0.2.1")
 ```
-
-#### __snapshot__ (Latest)
-
-```scala
-resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
-
-addSbtPlugin("com.github.3tty0n" % "sbt-jflex-scala" % "0.2.1-SNAPSHOT")
-```
-
 
 ## Usage
 
@@ -32,11 +20,17 @@ Put your `*.flex` file.
 
 ### In your sbt shell:
 
+#### Manual generation
+
 ```
 > jflex::generate
 ```
 
-then `Yylex.scala` is generated in `src/main/scala/flex`.
+then `Yylex.scala` is generated in `target/scala-<scala-version>/src_managed`.
+
+#### Auto generation
+
+If you execute `compile`, `Yylex.scala` will be generated in `target/scala-<scala-version>/src_managed` automatically.
 
 ## License
 
