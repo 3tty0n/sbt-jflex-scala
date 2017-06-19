@@ -36,12 +36,13 @@ object SbtJFlexScala extends AutoPlugin {
 
   override val projectSettings: Seq[Setting[_]] = Seq(
     sourceDirectory in jflex := sourceDirectory.value / "main" / "flex",
-    outputDirectory in jflex := sourceDirectory.value / "main" / "scala" /  "flex",
+    outputDirectory in jflex := sourceManaged.value,
     toolConfiguration := JFlexToolConfiguration(),
     pluginConfiguration := PluginConfiguration(),
     sources in jflex := ((sourceDirectory in jflex).value ** "*.flex").get,
     generate in jflex := jflexGeneratorTask.value,
-    unmanagedSourceDirectories in Compile += (sourceDirectory in jflex).value
+    unmanagedSourceDirectories in Compile += (sourceDirectory in jflex).value,
+    compile := (compile in Compile).dependsOn(jflexGeneratorTask).value
   )
 
   lazy val jflexGeneratorTask: Def.Initialize[Task[Unit]] = Def.task {
