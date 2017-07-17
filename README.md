@@ -1,6 +1,6 @@
 # sbt-jflex-scala [![Build Status](https://travis-ci.org/3tty0n/sbt-jflex-scala.svg?branch=master)](https://travis-ci.org/3tty0n/sbt-jflex-scala)
 
-A plugin for sbt 0.13.x, generates Scala code based on a jflex specification.
+A plugin for sbt 0.13.x/1.0.x, generates Scala code based on a jflex specification.
 
 This is inspired by [sbt-jflex](https://github.com/dlwh/sbt-jflex).
 
