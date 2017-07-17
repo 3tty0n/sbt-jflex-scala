@@ -1,8 +1,9 @@
 language: scala
 scala:
-  - 2.10.6
+  - 2.12.2
+jdk: oraclejdk8
 script:
-  - sbt scripted
+  - sbt "^scripted"
 cache:
   directories:
     - $HOME/.ivy2/cache
