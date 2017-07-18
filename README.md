@@ -9,7 +9,7 @@ This is inspired by [sbt-jflex](https://github.com/dlwh/sbt-jflex).
 ### `project/plugins.sbt`:
 
 ```scala
-addSbtPlugin("com.github.3tty0n" % "sbt-jflex-scala" % "0.2.2")
+addSbtPlugin("com.github.3tty0n" % "sbt-jflex-scala" % "0.3.0")
 ```
 
 ## Usage
