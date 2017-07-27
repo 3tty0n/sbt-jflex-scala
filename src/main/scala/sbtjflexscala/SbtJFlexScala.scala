@@ -82,7 +82,7 @@ object SbtJFlexScala extends AutoPlugin {
       log.info(s"JFlex: Grammar file ${g.getPath} detected.")
       Try { Main.generate(g) } match {
         case Success(_) =>
-          log.info(s"JFlex: File generated successfully.")
+          log.info(s"JFlex: File generation is succeeded. Generated files are at ${target.getPath}.")
         case Failure(_) =>
           log.error(s"JFlex: File generation is failed.")
       }
