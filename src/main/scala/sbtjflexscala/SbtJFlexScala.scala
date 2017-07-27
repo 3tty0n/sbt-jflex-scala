@@ -35,13 +35,17 @@ object SbtJFlexScala extends AutoPlugin {
   override def trigger: PluginTrigger = allRequirements
 
   override val projectSettings: Seq[Setting[_]] = Seq(
-    sourceDirectory in jflex := sourceDirectory.value / "main" / "flex",
+    sourceDirectory in Compile in jflex := (sourceDirectory in Compile).value / "flex",
+    sourceDirectory in Test in jflex := (sourceDirectory in Test).value / "flex",
     outputDirectory in jflex := sourceManaged.value,
     toolConfiguration := JFlexToolConfiguration(),
     pluginConfiguration := PluginConfiguration(),
-    sources in jflex := ((sourceDirectory in jflex).value ** "*.flex").get,
+    sources in jflex :=
+      ((sourceDirectory in Compile in jflex).value ** "*.flex").get ++
+      ((sourceDirectory in Test in jflex).value ** ".flex").get,
     generate in jflex := jflexGeneratorTask.value,
-    unmanagedSourceDirectories in Compile += (sourceDirectory in jflex).value,
+    unmanagedSourceDirectories in Compile += (sourceDirectory in Compile in jflex).value,
+    unmanagedSourceDirectories in Test += (sourceDirectory in Test in jflex).value,
     compile := (compile in Compile).dependsOn(jflexGeneratorTask).value
   )
 
