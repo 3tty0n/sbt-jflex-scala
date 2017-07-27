@@ -8,9 +8,16 @@ This is inspired by [sbt-jflex](https://github.com/dlwh/sbt-jflex).
 
 ### `project/plugins.sbt`:
 
-```scala
-addSbtPlugin("com.github.3tty0n" % "sbt-jflex-scala" % "0.3.0")
-```
+- stable (recommended)
+
+  ```scala
+  addSbtPlugin("com.github.3tty0n" % "sbt-jflex-scala" % "0.3.0")
+  ```
+- development
+
+  ```scala
+  addSbtPlugin("com.github.3tty0n" % "sbt-jflex-scala" % "0.3.1-SNAPSHOT")
+  ```
 
 ## Usage
 
