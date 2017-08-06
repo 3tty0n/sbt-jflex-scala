@@ -6,7 +6,9 @@ lazy val root = (project in file(".")).
     crossSbtVersions := Vector("0.13.15", "1.0.0-RC2"),
     scalacOptions := Seq("-deprecation", "-unchecked"),
     libraryDependencies += "edu.umass.cs.iesl" % "jflex-scala" % "1.6.1"
-  ).settings(publishSettings: _*)
+  ).settings(
+    publishSettings
+  )
 
 lazy val publishSettings = Seq(
   publishMavenStyle := true,
@@ -19,6 +21,9 @@ lazy val publishSettings = Seq(
   },
   publishArtifact in Test := false,
   pomIncludeRepository := { _ => false },
+  publishArtifact in (Compile, packageDoc) := false,
+  publishArtifact in packageDoc := false,
+  sources in (Compile, doc) := Seq.empty,
   licenses := Seq("MIT" -> url("http://opensource.org/licenses/MIT")),
   pomExtra :=
     <url>https://github.com/3tty0n/sbt-jflex-scala</url>
