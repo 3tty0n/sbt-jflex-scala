@@ -12,4 +12,3 @@ notifications:
   email:
     recipients:
       - yuizalp@gmail.com
-  on_success: always
