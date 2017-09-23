@@ -1,5 +1,4 @@
-ScriptedPlugin.scriptedSettings
 scriptedLaunchOpts := { scriptedLaunchOpts.value ++
-  Seq("-Dplugin.version=" + version.value)
+  Seq("-Xmx1024M", "-Dplugin.version=" + version.value)
 }
 scriptedBufferLog := false
