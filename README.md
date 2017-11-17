@@ -11,12 +11,12 @@ This is inspired by [sbt-jflex](https://github.com/dlwh/sbt-jflex).
 - stable (recommended)
 
   ```scala
-  addSbtPlugin("com.github.3tty0n" % "sbt-jflex-scala" % "0.3.0")
+  addSbtPlugin("com.github.3tty0n" % "sbt-jflex-scala" % "0.4.0")
   ```
 - development
 
   ```scala
-  addSbtPlugin("com.github.3tty0n" % "sbt-jflex-scala" % "0.3.1-SNAPSHOT")
+  addSbtPlugin("com.github.3tty0n" % "sbt-jflex-scala" % "0.4.1-SNAPSHOT")
   ```
 
 ## Usage
@@ -30,14 +30,14 @@ Put your `*.flex` file.
 #### Manual generation
 
 ```
-> jflex::generate
+> jflexGenerate
 ```
 
-then `Yylex.scala` is generated in `target/scala-<scala-version>/src_managed`.
+then `Yylex.scala` is generated in `src/main/scala`.
 
 #### Auto generation
 
-If you execute `compile`, `Yylex.scala` will be generated in `target/scala-<scala-version>/src_managed` automatically.
+If you execute `compile`, `Yylex.scala` will be generated in `src/main/scala` automatically.
 
 ## License
 

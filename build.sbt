@@ -3,7 +3,7 @@ lazy val root = (project in file(".")).
     name := "sbt-jflex-scala",
     organization := "com.github.3tty0n",
     sbtPlugin := true,
-    crossSbtVersions := Vector("0.13.15", "1.0.2"),
+    crossSbtVersions := Vector("0.13.16", "1.0.3"),
     scalacOptions := Seq("-deprecation", "-unchecked"),
     libraryDependencies += "edu.umass.cs.iesl" % "jflex-scala" % "1.6.1"
   ).settings(
