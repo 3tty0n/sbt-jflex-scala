@@ -21,13 +21,12 @@ object SbtJFlexScala extends AutoPlugin {
   )
 
   object autoImport {
-    lazy val jflex = taskKey[Unit]("jflex")
-    lazy val sourceDirectory = settingKey[File]("jflex-source-directory")
-    lazy val outputDirectory = settingKey[File]("jflex-output-directory")
+    lazy val jflexSourceDirectory = settingKey[File]("jflex-source-directory")
+    lazy val jflexOutputDirectory = settingKey[File]("jflex-output-directory")
     lazy val toolConfiguration = settingKey[JFlexToolConfiguration]("jflex-tool-configuration")
     lazy val pluginConfiguration = settingKey[PluginConfiguration]("jflex-plugin-configuration")
-    lazy val sources = taskKey[Seq[File]]("jflex-sources")
-    lazy val generate = taskKey[Unit]("jflex-generate")
+    lazy val jflexSources = taskKey[Seq[File]]("jflex-sources")
+    lazy val jflexGenerate = taskKey[Unit]("jflex-generate")
   }
 
   import autoImport._
@@ -35,24 +34,21 @@ object SbtJFlexScala extends AutoPlugin {
   override def trigger: PluginTrigger = allRequirements
 
   override val projectSettings: Seq[Setting[_]] = Seq(
-    sourceDirectory in Compile in jflex := (sourceDirectory in Compile).value / "flex",
-    sourceDirectory in Test in jflex := (sourceDirectory in Test).value / "flex",
-    outputDirectory in jflex := sourceManaged.value,
+    jflexSourceDirectory := (sourceDirectory in Compile).value / "flex",
+    jflexOutputDirectory := (sourceDirectory in Compile).value / "scala",
     toolConfiguration := JFlexToolConfiguration(),
     pluginConfiguration := PluginConfiguration(),
-    sources in jflex :=
-      ((sourceDirectory in Compile in jflex).value ** "*.flex").get ++
-      ((sourceDirectory in Test in jflex).value ** ".flex").get,
-    generate in jflex := jflexGeneratorTask.value,
-    unmanagedSourceDirectories in Compile += (sourceDirectory in Compile in jflex).value,
-    unmanagedSourceDirectories in Test += (sourceDirectory in Test in jflex).value,
+    jflexSources := ((jflexSourceDirectory in Compile).value ** "*.flex").get ++ ((jflexSourceDirectory in Test).value ** ".flex").get,
+    jflexGenerate := jflexGeneratorTask.value,
+    unmanagedSourceDirectories in Compile += (jflexSourceDirectory in Compile).value,
+    unmanagedSourceDirectories in Test += (jflexSourceDirectory in Test).value,
     compile := (compile in Compile).dependsOn(jflexGeneratorTask).value
   )
 
   lazy val jflexGeneratorTask: Def.Initialize[Task[Unit]] = Def.task {
     generateWithJFlex(
-      (sources in jflex).value,
-      (outputDirectory in jflex).value,
+      jflexSources.value,
+      jflexOutputDirectory.value,
       toolConfiguration.value,
       pluginConfiguration.value,
       streams.value.log
@@ -68,7 +64,7 @@ object SbtJFlexScala extends AutoPlugin {
   ): Unit = {
     target.mkdirs()
 
-    log.info(s"JFlex: Using JFlex version ${Main.version} to generate source files.")
+    log.info(s"Using JFlex version ${Main.version} to generate source files.")
     Options.dot = tool.dot
     Options.verbose = tool.verbose
     Options.dump = tool.dump
@@ -76,18 +72,18 @@ object SbtJFlexScala extends AutoPlugin {
     Options.emitScala = tool.emitScala
 
     val grammars = (srcDir ** ("*" + options.grammarSuffix)).get
-    log.info(s"JFlex: Generating source files for ${grammars.size} grammars.")
 
-    grammars.foreach { g =>
-      log.info(s"JFlex: Grammar file ${g.getPath} detected.")
+    if (grammars.isEmpty) {
+      log.warn(s"No JFlex grammars is detected.")
+    } else {
+      grammars.foreach { g =>
+      log.info(s"Grammar file ${g.getPath} detected. Generating...")
       Try { Main.generate(g) } match {
         case Success(_) =>
-          log.info(s"JFlex: File generation is succeeded. Generated files are at ${target.getPath}.")
+          log.info(s"File generation is succeeded. Generated files are at ${target.getPath}.")
         case Failure(_) =>
-          log.error(s"JFlex: File generation is failed.")
-      }
+          log.error(s"File generation is failed.")
+      }}
     }
   }
-
-
 }

@@ -1,0 +1,7 @@
+> jflexGenerate
+$ sleep 1
+$ exists src/Yylex.scala
+$ delete src/Yylex.scala
+> compile
+$ sleep 1
+$ exists src/Yylex.scala
