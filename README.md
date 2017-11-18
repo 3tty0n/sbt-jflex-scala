@@ -4,7 +4,7 @@ A plugin for sbt 0.13.x/1.0.x, generates Scala code based on a jflex specificati
 
 This is inspired by [sbt-jflex](https://github.com/dlwh/sbt-jflex).
 
-## Installation
+## Setup
 
 ### `project/plugins.sbt`:
 
@@ -38,6 +38,29 @@ then `Yylex.scala` is generated in `src/main/scala`.
 #### Auto generation
 
 If you execute `compile`, `Yylex.scala` will be generated in `src/main/scala` automatically.
+
+## Customize
+
+If the structure of your application is nonstandard:
+
+``` scala
+.
+├── build.sbt
+├── flex
+│   └── simple.flex
+├── project
+│   └── plugins.sbt
+├── src
+│   ├── Base.scala
+│   └── Tokens.scala
+└── test
+```
+### `build.sbt`:
+
+``` scala
+jflexSourceDirectory := baseDirectory.value / "flex"
+jflexOutputDirectory := baseDirectory.value / "src"
+```
 
 ## License
 
